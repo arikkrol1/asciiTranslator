@@ -21,7 +21,7 @@ type LineStreamer struct {
     scanner *bufio.Scanner
 }
 
-func (ls LineStreamer) Open(file string){
+func (ls *LineStreamer) Open(file string){
     inFile, err := os.Open(file)
     if err != nil {
         fmt.Println(err)
@@ -30,15 +30,14 @@ func (ls LineStreamer) Open(file string){
     
     ls.inFile = inFile
     ls.scanner = bufio.NewScanner(ls.inFile)
-    ls.scanner.Split(bufio.ScanLines)
 }
 
-func (ls LineStreamer) Close(){
+func (ls *LineStreamer) Close(){
     ls.inFile.Close()
 }
 
 //ReadLines returns the lines read from the file + true if there are more lines to read or false otherwise 
-func (ls LineStreamer) ReadLines(linesNum int) ([]string, bool) {
+func (ls *LineStreamer) ReadLines(linesNum int) ([]string, bool) {
     lines := make([]string, linesNum)
     
 	for  i := 0; i < linesNum; i++ {
