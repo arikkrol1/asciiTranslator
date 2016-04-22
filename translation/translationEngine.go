@@ -11,3 +11,4 @@ import(
 type TranslationEngine struct{
     lineStreamer *io.LineStreamer
 }
+
