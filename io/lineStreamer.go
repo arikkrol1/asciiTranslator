@@ -21,6 +21,10 @@ type LineStreamer struct {
     scanner *bufio.Scanner
 }
 
+func (ls LineStreamer) TestFunc() int{
+    return 1
+}
+
 func (ls LineStreamer) Open(file string){
     inFile, err := os.Open(file)
     if err != nil {
