@@ -1,6 +1,6 @@
 
 
-package asciiTranslator
+package io
 
 import "testing"
 

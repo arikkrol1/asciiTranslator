@@ -1,12 +1,13 @@
 
-
 package translation
 
 import(
-    "fmt"
-    
+    // "fmt"
+    "github.com/arikkrol/asciiTranslator/translation/io"
 )
 
-func Print1(){
-    fmt.Println("1111111")
+
+
+type TranslationEngine struct{
+    lineStreamer *io.LineStreamer
 }

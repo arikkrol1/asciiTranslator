@@ -1,4 +1,4 @@
-package asciiTranslator
+package io
 
 import (
     "os"
@@ -19,10 +19,6 @@ import (
 type LineStreamer struct {
 	inFile *os.File
     scanner *bufio.Scanner
-}
-
-func (ls LineStreamer) TestFunc() int{
-    return 1
 }
 
 func (ls LineStreamer) Open(file string){
