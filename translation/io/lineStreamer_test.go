@@ -7,22 +7,35 @@ import (
     "testing" 
 )
 
+
+func testBatch (lines []string, t *testing.T){
+     for i, val := range lines{
+            fmt.Println(val)
+            
+            if i == 3 {
+                if val != "" {
+                    fmt.Println("every 4th line should be blank")
+                    t.FailNow()
+                }
+            } else {
+                if val == "" {
+                    fmt.Println("only 4th line should be blank")
+                    t.FailNow()
+                }
+            }
+        }
+}
+
 func TestTestFunc(t *testing.T) {
     var ls = &LineStreamer{}
     
-    
-    
-    
     ls.Open("./testdata/good.txt")
     
-    //TODO: for some reason ls.scanner is nil here
-    //fmt.Println(ls.scanner)
-    // fmt.Println(ls.inFile)
+    var lines []string
+    var moreLines = true
     
-    lines, _ := ls.ReadLines(3)
-    
-    for _, val := range lines{
-        fmt.Println(val)
+    for moreLines {
+        lines, moreLines = ls.ReadLines(4)
+        testBatch(lines, t)
     }
-    
 }
