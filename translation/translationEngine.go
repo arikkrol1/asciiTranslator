@@ -8,14 +8,17 @@ import(
 
 
 type translationEngine struct{
-    numberProvider *io.IInputProvider 
-    outputHandler *io.IOutputHandler
+    numberProvider io.IInputProvider 
+    outputHandler io.IOutputHandler
     translationDic map[string]string
 }
 
 //NewTranslationEngine ctor 
-func NewTranslationEngine(*io.IInputProvider, *io.IOutputHandler) *translationEngine{
+func NewTranslationEngine(inFile string, outFile string) *translationEngine{
+    ta := &translationEngine{}
     
+    ta.numberProvider = io.NewAsciiNumberProvider(inFile)
+    //TODO: complete outputHandler
     
     //TODO: complete
     return nil;

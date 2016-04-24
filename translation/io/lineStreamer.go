@@ -7,12 +7,16 @@ import (
 )
 
 
-type LineStreamer struct {
+type lineStreamer struct {
 	inFile *os.File
     scanner *bufio.Scanner
 }
 
-func (ls *LineStreamer) Open(file string){
+func NewLineStreamer() *lineStreamer{
+    return &lineStreamer{}
+}
+
+func (ls *lineStreamer) Open(file string){
     inFile, err := os.Open(file)
     if err != nil {
         fmt.Println(err)
@@ -23,12 +27,12 @@ func (ls *LineStreamer) Open(file string){
     ls.scanner = bufio.NewScanner(ls.inFile)
 }
 
-func (ls *LineStreamer) Close(){
+func (ls *lineStreamer) Close(){
     ls.inFile.Close()
 }
 
 //ReadLines returns the lines read from the file + true if there are more lines to read or false otherwise 
-func (ls *LineStreamer) ReadLines(linesNum int) ([]string, bool) {
+func (ls *lineStreamer) ReadLines(linesNum int) ([]string, bool) {
     lines := make([]string, linesNum)
     
 	for  i := 0; i < linesNum; i++ {
