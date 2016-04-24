@@ -15,11 +15,12 @@ type translationEngine struct{
 
 //NewTranslationEngine ctor 
 func NewTranslationEngine(inFile string, outFile string) *translationEngine{
-    ta := &translationEngine{}
-    
-    ta.numberProvider = io.NewAsciiNumberProvider(inFile)
-    //TODO: complete outputHandler
-    
+    te := &translationEngine{}
+    te.numberProvider = io.NewAsciiNumberProvider(inFile)
+    te.outputHandler = io.NewInvoiceNumberOutputHandler(outFile)
+    return te;
+}
+
+func (te translationEngine) Translate(){
     //TODO: complete
-    return nil;
 }
