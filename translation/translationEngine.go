@@ -2,7 +2,7 @@
 package translation
 
 import(
-    "fmt"
+    // "fmt"
     "github.com/arikkrol/asciiTranslator/translation/io"
 )
 
@@ -27,16 +27,15 @@ func (te *translationEngine) Translate(){
         numRepresentation := te.numberProvider.GetNext()
         
         if numRepresentation == nil {
-            return
+            break
         }
         
         num := te.translateNumber(numRepresentation)
         
-        //TODO: remove
-        fmt.Println(num)
-        
         te.outputHandler.HandleOutput(num)
     }
+    
+    
 }
 
 func (te *translationEngine) translateNumber(numRepresentation []string) string{
