@@ -42,6 +42,10 @@ func (numProvider *asciiNumberProvider) GetNext() []string{
     return res
 }
 
+func (numProvider *asciiNumberProvider) Close(){
+    numProvider.lineStreamer.Close()
+}
+
 func getDigit(lines []string, index int) string{
     digitArr := make([]byte, digitWidth * digitHeight)
     arrPos := 0

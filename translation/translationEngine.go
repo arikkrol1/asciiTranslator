@@ -22,20 +22,23 @@ func NewTranslationEngine(inFile string, outFile string) *translationEngine{
 }
 
 func (te *translationEngine) Translate(){
+    defer te.closeIO()
     
     for {
         numRepresentation := te.numberProvider.GetNext()
         
         if numRepresentation == nil {
-            break
+            return
         }
         
         num := te.translateNumber(numRepresentation)
-        
         te.outputHandler.HandleOutput(num)
     }
-    
-    
+}
+
+func (te *translationEngine) closeIO(){
+    te.numberProvider.Close()
+    te.outputHandler.Close()
 }
 
 func (te *translationEngine) translateNumber(numRepresentation []string) string{

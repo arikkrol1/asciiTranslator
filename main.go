@@ -5,7 +5,7 @@ import(
 )
 
 func main()  {
-    te := translation.NewTranslationEngine("./translation/io/testdata/bad.txt", "./translation/io/testoutput/bad.txt")
+    te := translation.NewTranslationEngine("./translation/io/testdata/good.txt", "./translation/io/testoutput/good.txt")
     te.Translate()
 }
 

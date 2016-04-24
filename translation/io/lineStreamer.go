@@ -39,7 +39,6 @@ func (ls *lineStreamer) ReadLines(linesNum int) ([]string, bool) {
         if ls.scanner.Scan() {
             lines[i] = ls.scanner.Text() 
         } else {
-            ls.Close()
             return lines, false
         }
 	}
