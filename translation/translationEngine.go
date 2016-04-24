@@ -32,14 +32,15 @@ func (te *translationEngine) Translate(){
         
         num := te.translateNumber(numRepresentation)
         
+        //TODO: remove
         fmt.Println(num)
         
-        //TODO: send to outputHandler
-       
+        te.outputHandler.HandleOutput(num)
     }
 }
 
 func (te *translationEngine) translateNumber(numRepresentation []string) string{
+    suffix := ""
     numArr := make([]byte, len(numRepresentation))
     for i,val := range numRepresentation{
         char, exists := te.translationDic[val]
@@ -47,10 +48,11 @@ func (te *translationEngine) translateNumber(numRepresentation []string) string{
             numArr[i] = char    
         } else {
             numArr[i] = '?'
+            suffix = " ILLEGAL"
         }
     }
     
-    res := string(numArr)
+    res := string(numArr) + suffix
     return res
 }
 

@@ -3,10 +3,12 @@ package io
 import(
     "os"
     "fmt"
+    "bufio"
 )
 
 type invoiceNumberOutputHandler struct{
     outFile *os.File
+    writer *bufio.Writer
 }
 
 //NewInvoiceNumberOutputHandler ctor
@@ -16,7 +18,11 @@ func NewInvoiceNumberOutputHandler(file string) *invoiceNumberOutputHandler{
     return handler
 }
 
-func (handler invoiceNumberOutputHandler) Open(file string){
+func (handler *invoiceNumberOutputHandler) Close(){
+    handler.outFile.Close()
+}
+
+func (handler *invoiceNumberOutputHandler) Open(file string){
     var err error 
     handler.outFile, err = os.Open(file)
     if err != nil {
@@ -25,10 +31,13 @@ func (handler invoiceNumberOutputHandler) Open(file string){
         
         return
     }
+    
+    handler.writer = bufio.NewWriter(handler.outFile)
 }
 
 
 
-func (handler invoiceNumberOutputHandler) HandleOutput(output string){
-    //TODO: complete
+func (handler *invoiceNumberOutputHandler) HandleOutput(output string){
+    handler.writer.WriteString(output)
+    //TODO: maybe need to write linefeed
 } 
