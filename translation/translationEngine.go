@@ -9,6 +9,7 @@ import(
 
 
 type TranslationEngine struct{
-    lineStreamer *io.LineStreamer
+    numberProvider *io.IInputProvider 
+    outputHandler *io.IOutputHandler
 }
 

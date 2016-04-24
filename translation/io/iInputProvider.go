@@ -2,6 +2,6 @@ package io
 
 
 
-type INumberProvider interface{
+type IInputProvider interface{
     GetNext() []string
 }
