@@ -27,7 +27,7 @@ func testBatch (lines []string, t *testing.T){
 }
 
 func TestTestFunc(t *testing.T) {
-    var ls = &LineStreamer{}
+    var ls = NewLineStreamer()
     
     ls.Open("./testdata/good.txt")
     
