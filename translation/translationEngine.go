@@ -21,7 +21,7 @@ func NewTranslationEngine(inFile string, outFile string) *translationEngine{
     return te;
 }
 
-func (te translationEngine) Translate(){
+func (te *translationEngine) Translate(){
     
     for {
         numRepresentation := te.numberProvider.GetNext()
@@ -39,7 +39,7 @@ func (te translationEngine) Translate(){
     }
 }
 
-func (te translationEngine) translateNumber(numRepresentation []string) string{
+func (te *translationEngine) translateNumber(numRepresentation []string) string{
     numArr := make([]byte, len(numRepresentation))
     for i,val := range numRepresentation{
         char, exists := te.translationDic[val]
@@ -54,7 +54,7 @@ func (te translationEngine) translateNumber(numRepresentation []string) string{
     return res
 }
 
-func (te translationEngine) initTranslationDic(){
+func (te *translationEngine) initTranslationDic(){
     te.translationDic = make(map[string]byte)
     
     te.translationDic[" _ | ||_|"] = '0';

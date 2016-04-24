@@ -6,7 +6,6 @@ import (
 )
 
 
-
 func TestTranslateNumber(t *testing.T){
     trasEngine := NewTranslationEngine("./io/testdata/good.txt", "./io/testoutput/good.txt")
     
@@ -18,6 +17,4 @@ func TestTranslateNumber(t *testing.T){
         fmt.Println("expected 600143155 but was " + num)
         t.FailNow()    
     }
-    
-    
 }
