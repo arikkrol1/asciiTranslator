@@ -26,7 +26,6 @@ func (te *translationEngine) Translate(){
     
     for {
         numRepresentation := te.numberProvider.GetNext()
-        
         if numRepresentation == nil {
             return
         }

@@ -34,11 +34,9 @@ func (numProvider *asciiNumberProvider) GetNext() []string{
     lines, numProvider.more = numProvider.lineStreamer.ReadLines(linesToRead)
     
     res := make([]string, digits)
-    
     for i := 0;  i < digits; i++ {
         res[i] = getDigit(lines, i * digitWidth)
     }
-    
     return res
 }
 
