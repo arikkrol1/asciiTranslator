@@ -10,7 +10,7 @@ import (
 
 func testBatch (lines []string, t *testing.T){
      for i, val := range lines{
-            fmt.Println(val)
+            //fmt.Println(val)
             
             if i == 3 {
                 if val != "" {
@@ -38,4 +38,19 @@ func TestStreaming(t *testing.T) {
         lines, moreLines = ls.ReadLines(4)
         testBatch(lines, t)
     }
+}
+
+
+
+
+func TestGetNext(t *testing.T) {
+    numProvider := NewAsciiNumberProvider("./testdata/good.txt")
+    
+    numRepresentation := numProvider.GetNext()
+    
+    for _,val := range numRepresentation{
+        fmt.Println(val)
+    }
+    
+    // t.FailNow()
 }
