@@ -2,14 +2,14 @@
 package translation
 
 import(
-    // "fmt"
+    "fmt"
     "github.com/arikkrol/asciiTranslator/translation/io"
 )
 
 type translationEngine struct{
     numberProvider io.IInputProvider 
     outputHandler io.IOutputHandler
-    translationDic map[string]string
+    translationDic map[string]byte
 }
 
 //NewTranslationEngine ctor 
@@ -22,20 +22,49 @@ func NewTranslationEngine(inFile string, outFile string) *translationEngine{
 }
 
 func (te translationEngine) Translate(){
-    //TODO: complete
+    
+    for {
+        numRepresentation := te.numberProvider.GetNext()
+        
+        if numRepresentation == nil {
+            return
+        }
+        
+        num := te.translateNumber(numRepresentation)
+        
+        fmt.Println(num)
+        
+        //TODO: send to outputHandler
+       
+    }
+}
+
+func (te translationEngine) translateNumber(numRepresentation []string) string{
+    numArr := make([]byte, len(numRepresentation))
+    for i,val := range numRepresentation{
+        char, exists := te.translationDic[val]
+        if exists{
+            numArr[i] = char    
+        } else {
+            numArr[i] = '?'
+        }
+    }
+    
+    res := string(numArr)
+    return res
 }
 
 func (te translationEngine) initTranslationDic(){
-    te.translationDic = make(map[string]string)
+    te.translationDic = make(map[string]byte)
     
-    te.translationDic[" _ | ||_|"] = "0";
-    te.translationDic["     |  |"] = "1";
-    te.translationDic[" _  _||_ "] = "2";
-    te.translationDic[" _  _| _|"] = "3";
-    te.translationDic["   |_|  |"] = "4";
-    te.translationDic[" _ |_  _|"] = "5";
-    te.translationDic[" _ |_ |_|"] = "6";
-    te.translationDic[" _   |  |"] = "7";
-    te.translationDic[" _ |_||_|"] = "8";
-    te.translationDic[" _ |_| _|"] = "9";
+    te.translationDic[" _ | ||_|"] = '0';
+    te.translationDic["     |  |"] = '1';
+    te.translationDic[" _  _||_ "] = '2';
+    te.translationDic[" _  _| _|"] = '3';
+    te.translationDic["   |_|  |"] = '4';
+    te.translationDic[" _ |_  _|"] = '5';
+    te.translationDic[" _ |_ |_|"] = '6';
+    te.translationDic[" _   |  |"] = '7';
+    te.translationDic[" _ |_||_|"] = '8';
+    te.translationDic[" _ |_| _|"] = '9';
 }
