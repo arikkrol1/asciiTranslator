@@ -24,7 +24,7 @@ func (handler *invoiceNumberOutputHandler) Close(){
 
 func (handler *invoiceNumberOutputHandler) Open(file string){
     var err error 
-    handler.outFile, err = os.Open(file)
+    handler.outFile, err = os.Create(file)
     if err != nil {
         fmt.Println(err)
         //TODO: use panic
