@@ -41,16 +41,3 @@ func TestStreaming(t *testing.T) {
 }
 
 
-
-
-// func TestGetNext(t *testing.T) {
-//     numProvider := NewAsciiNumberProvider("./testdata/good.txt")
-    
-//     numRepresentation := numProvider.GetNext()
-    
-//     for _,val := range numRepresentation{
-//         fmt.Println(val)
-//     }
-    
-//     // t.FailNow()
-// }
