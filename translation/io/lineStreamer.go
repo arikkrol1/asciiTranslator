@@ -2,7 +2,7 @@ package io
 
 import (
     "os"
-    "fmt"
+    // "fmt"
     "bufio"
 )
 
@@ -12,6 +12,7 @@ type lineStreamer struct {
     scanner *bufio.Scanner
 }
 
+//NewLineStreamer ctor
 func NewLineStreamer() *lineStreamer{
     return &lineStreamer{}
 }
@@ -19,8 +20,7 @@ func NewLineStreamer() *lineStreamer{
 func (ls *lineStreamer) Open(file string){
     inFile, err := os.Open(file)
     if err != nil {
-        fmt.Println(err)
-        return
+        panic("cant find or open input file " + file)
     }
     
     ls.inFile = inFile

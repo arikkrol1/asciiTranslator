@@ -7,8 +7,9 @@ import(
 )
 
 func main()  {
-    args := os.Args[1:]
+    defer failChekc()
     
+    args := os.Args[1:]
     if len(args) != 2{
         fmt.Println("usage - required args: <input file path> <output file path>")
         return
@@ -18,3 +19,8 @@ func main()  {
     te.Translate()
 }
 
+func failChekc(){
+    if r := recover(); r != nil {
+        fmt.Println("Panic caught: ", r)
+    }
+}
