@@ -13,7 +13,6 @@ const digits = 9
 
 type asciiNumberProvider struct {
     lineStreamer *lineStreamer
-    more bool
 }
 
 //NewAsciiNumberProvider ctor
@@ -21,17 +20,15 @@ func NewAsciiNumberProvider(file string) *asciiNumberProvider{
     var anp = &asciiNumberProvider{}
     anp.lineStreamer = NewLineStreamer()
     anp.lineStreamer.Open(file)
-    anp.more = true
     return anp
 }
 
 func (numProvider *asciiNumberProvider) GetNext() []string{
-    if !numProvider.more {
+    lines := numProvider.lineStreamer.ReadLines(linesToRead)
+    
+    if len(lines) < linesToRead {
         return nil
     }
-    
-    var lines []string
-    lines, numProvider.more = numProvider.lineStreamer.ReadLines(linesToRead)
     
     res := make([]string, digits)
     for i := 0;  i < digits; i++ {

@@ -10,7 +10,7 @@ import (
 
 func testBatch (lines []string, t *testing.T){
      for i, val := range lines{
-            //fmt.Println(val)
+            // fmt.Println(val)
             
             if i == 3 {
                 if val != "" {
@@ -32,10 +32,14 @@ func TestStreaming(t *testing.T) {
     ls.Open("./testdata/good.txt")
     
     var lines []string
-    var moreLines = true
     
-    for moreLines {
-        lines, moreLines = ls.ReadLines(4)
+    for  {
+        lines = ls.ReadLines(4)
+        
+        if len(lines) < 4 {
+            break
+        }
+        
         testBatch(lines, t)
     }
 }
