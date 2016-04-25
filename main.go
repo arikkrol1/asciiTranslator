@@ -17,10 +17,9 @@ func main()  {
         return
     }
     
+    //TODO: set paths in config
     config := readConfig()
-    fmt.Println(config)
-    
-    te := translation.NewTranslationEngine(args[0], args[1])
+    te := translation.NewTranslationEngine(args[0], args[1], config)
     te.Translate()
 }
 

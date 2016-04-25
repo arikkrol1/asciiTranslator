@@ -13,11 +13,11 @@ type translationEngine struct{
 }
 
 //NewTranslationEngine ctor 
-func NewTranslationEngine(inFile string, outFile string) *translationEngine{
+func NewTranslationEngine(inFile string, outFile string, config map[string]interface{}) *translationEngine{
     te := &translationEngine{}
     te.numberProvider = io.NewAsciiNumberProvider(inFile)
     te.outputHandler = io.NewInvoiceNumberOutputHandler(outFile)
-    te.initTranslationDic()
+    te.initTranslationDic(config)
     return te;
 }
 
@@ -57,17 +57,10 @@ func (te *translationEngine) translateNumber(numRepresentation []string) string{
     return res
 }
 
-func (te *translationEngine) initTranslationDic(){
+func (te *translationEngine) initTranslationDic(config map[string]interface{}){
     te.translationDic = make(map[string]byte)
     
-    te.translationDic[" _ | ||_|"] = '0';
-    te.translationDic["     |  |"] = '1';
-    te.translationDic[" _  _||_ "] = '2';
-    te.translationDic[" _  _| _|"] = '3';
-    te.translationDic["   |_|  |"] = '4';
-    te.translationDic[" _ |_  _|"] = '5';
-    te.translationDic[" _ |_ |_|"] = '6';
-    te.translationDic[" _   |  |"] = '7';
-    te.translationDic[" _ |_||_|"] = '8';
-    te.translationDic[" _ |_| _|"] = '9';
+    for key,val := range config["digitTranslation"].(map[string]interface{}){
+        te.translationDic[key] = val.(string)[0]
+    }
 }
