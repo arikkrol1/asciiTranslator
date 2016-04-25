@@ -3,11 +3,13 @@
 
 1. Install Go runtime from https://golang.org/dl/
    You should have Go version 1.4+
-
-2. Make sure you have your GOPATH environment variable set to some directory  
+   Default location for linux is /usr/local/go
+   
+2. Make sure you have your GOPATH environment variable set to the installtion directory (/usr/local/go by default)  
+   Also make sure that GOPATH/bin is in the system path so "go" command can be executed from anywhere. 
 
 3. Execute "go get github.com/arikkrol1/asciiTranslator" from the commandline
-   This will add the code to /Your/Go/Path/src/github.com/arikkrol1/asciiTranslator 
+   This will add the code to GOPATH/src/github.com/arikkrol1/asciiTranslator 
 
 4. Change input and output file paths in app.conf 
 
