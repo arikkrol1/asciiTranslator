@@ -9,4 +9,3 @@ install Go from https://golang.org/dl/
 - bootstrap from configuration
 - fix double line at end of input file support
 - add instructions for test and run
-- take arguments from command line
