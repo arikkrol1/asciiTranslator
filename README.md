@@ -16,4 +16,4 @@
 6. Run the code using "go run main.go"
    You can also build an executable using "go build main.go" and run the executable 
 
-
+7. This was tested on Windows 10 and Linux 14.04
