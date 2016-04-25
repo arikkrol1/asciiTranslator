@@ -7,7 +7,7 @@ import(
 )
 
 func main()  {
-    defer failChekc()
+    defer failCheck()
     
     args := os.Args[1:]
     if len(args) != 2{
@@ -19,7 +19,7 @@ func main()  {
     te.Translate()
 }
 
-func failChekc(){
+func failCheck(){
     if r := recover(); r != nil {
         fmt.Println("Panic caught: ", r)
     }
