@@ -1,10 +1,13 @@
 # klarna-interview-go
 
 
-install Go from https://golang.org/dl/
+1. install Go runtime from https://golang.org/dl/
 
+2. clone the project from git clone git@github.com:arikkrol1/asciiTranslator.git 
 
+3. edit input and output file path in app.conf
 
-//TODO: 
+4. build the code using "go build main.go"
 
-- add instructions for test and run
+5. run the main executable 
+
