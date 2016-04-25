@@ -19,7 +19,7 @@ The exercise was implemented in Go (Golang) version 1.4
 
    This will add the code to GOPATH/src/github.com/arikkrol1/asciiTranslator 
 
-4. Change input and output file paths in app.conf 
+4. Change input and output file paths in app.conf . Paths should be absolute.
 
 5. All tests can be launched with "go test ./..." from asciiTranslator directory
 
