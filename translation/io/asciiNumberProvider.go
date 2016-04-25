@@ -6,33 +6,40 @@ import (
     // "bufio"
 )
 
-const linesToRead = 4
-const digitHeight = 3
-const digitWidth = 3
-const digits = 9
 
 type asciiNumberProvider struct {
     lineStreamer *lineStreamer
+    
+    linesToRead int
+    digitHeight int
+    digitWidth int
+    digits int
 }
 
 //NewAsciiNumberProvider ctor
-func NewAsciiNumberProvider(file string) *asciiNumberProvider{
-    var anp = &asciiNumberProvider{}
-    anp.lineStreamer = NewLineStreamer()
-    anp.lineStreamer.Open(file)
-    return anp
+func NewAsciiNumberProvider(file string, config map[string]interface{}) *asciiNumberProvider{
+    var numProvider = &asciiNumberProvider{}
+    numProvider.lineStreamer = NewLineStreamer()
+    numProvider.lineStreamer.Open(file)
+    
+    numProvider.linesToRead = int(config["linesToRead"].(float64))
+    numProvider.digitHeight = int(config["digitHeight"].(float64))
+    numProvider.digitWidth = int(config["digitWidth"].(float64))
+    numProvider.digits = int(config["digits"].(float64))
+    
+    return numProvider
 }
 
 func (numProvider *asciiNumberProvider) GetNext() []string{
-    lines := numProvider.lineStreamer.ReadLines(linesToRead)
+    lines := numProvider.lineStreamer.ReadLines(numProvider.linesToRead)
     
-    if len(lines) < linesToRead {
+    if len(lines) < numProvider.linesToRead {
         return nil
     }
     
-    res := make([]string, digits)
-    for i := 0;  i < digits; i++ {
-        res[i] = getDigit(lines, i * digitWidth)
+    res := make([]string, numProvider.digits)
+    for i := 0;  i < numProvider.digits; i++ {
+        res[i] = numProvider.getDigit(lines, i * numProvider.digitWidth)
     }
     return res
 }
@@ -41,11 +48,11 @@ func (numProvider *asciiNumberProvider) Close(){
     numProvider.lineStreamer.Close()
 }
 
-func getDigit(lines []string, index int) string{
-    digitArr := make([]byte, digitWidth * digitHeight)
+func (numProvider *asciiNumberProvider) getDigit(lines []string, index int) string{
+    digitArr := make([]byte, numProvider.digitWidth * numProvider.digitHeight)
     arrPos := 0
-    for row := 0;  row < digitHeight; row++ {
-        for col := index; col < index + digitWidth; col++ {
+    for row := 0;  row < numProvider.digitHeight; row++ {
+        for col := index; col < index + numProvider.digitWidth; col++ {
             char := lines[row][col]
             digitArr[arrPos] = char
             arrPos++

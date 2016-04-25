@@ -15,7 +15,7 @@ type translationEngine struct{
 //NewTranslationEngine ctor 
 func NewTranslationEngine(inFile string, outFile string, config map[string]interface{}) *translationEngine{
     te := &translationEngine{}
-    te.numberProvider = io.NewAsciiNumberProvider(inFile)
+    te.numberProvider = io.NewAsciiNumberProvider(inFile, config)
     te.outputHandler = io.NewInvoiceNumberOutputHandler(outFile)
     te.initTranslationDic(config)
     return te;
