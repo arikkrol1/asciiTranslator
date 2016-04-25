@@ -3,7 +3,7 @@ package translation
 
 import(
     // "fmt"
-    "./io"
+    "github.com/arikkrol/asciiTranslator/translation/io"
 )
 
 type translationEngine struct{

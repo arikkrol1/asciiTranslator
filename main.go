@@ -4,7 +4,7 @@ import(
     "fmt"
     "encoding/json"
     "io/ioutil"
-    "./translation"
+    "github.com/arikkrol/asciiTranslator/translation"
 )
 
 func main()  {
