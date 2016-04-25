@@ -3,14 +3,20 @@ package translation
 import (
     "fmt"
     "testing" 
+    "io/ioutil"
+    "encoding/json"
 )
 
+var config map[string]interface{}
 
-func TestTranslateNumber(t *testing.T){
-    trasEngine := NewTranslationEngine("./io/testdata/good.txt", "./io/testoutput/good.txt")
-    
+func TestMain(m *testing.M) {
+	config = readConfig()
+}
+
+
+func Test_TranslationEngine_translateNumber_readingValidAsciiNumberFromFile_numberParsedCorrectly(t *testing.T){
+    trasEngine := NewTranslationEngine(config)
     numRepresentation := trasEngine.numberProvider.GetNext()
-    
     num := trasEngine.translateNumber(numRepresentation)
     
     if num != "600143155"{
@@ -20,11 +26,9 @@ func TestTranslateNumber(t *testing.T){
 }
 
 
-func TestTranslateIllegalNumber(t *testing.T){
-    trasEngine := NewTranslationEngine("./io/testdata/bad.txt", "./io/testoutput/bad.txt")
-    
+func Test_TranslationEngine_translateNumber_readingInvalidAsciiNumberFromFile_numberParsedWithIllegalSuffix(t *testing.T){
+    trasEngine := NewTranslationEngine(config)
     numRepresentation := trasEngine.numberProvider.GetNext()
-    
     num := trasEngine.translateNumber(numRepresentation)
     
     if num != "8192?6248 ILLEGAL"{
@@ -33,3 +37,18 @@ func TestTranslateIllegalNumber(t *testing.T){
     }
 }
 
+func readConfig() map[string]interface{}{
+    configObj := make(map[string]interface{})
+    
+    fileBytes, err := ioutil.ReadFile("../app.conf")
+    if err != nil{
+        panic(err)
+    }
+    
+    err = json.Unmarshal(fileBytes, &configObj)
+    if err != nil{
+        panic(err)
+    }
+    
+    return configObj
+}
