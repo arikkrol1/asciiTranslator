@@ -1,9 +1,7 @@
 package io
 
 import (
-    // "os"
     // "fmt"
-    // "bufio"
 )
 
 
@@ -33,6 +31,7 @@ func NewAsciiNumberProvider(config map[string]interface{}) *asciiNumberProvider{
 func (numProvider *asciiNumberProvider) GetNext() []string{
     lines := numProvider.lineStreamer.ReadLines(numProvider.linesToRead)
     
+    //reached end of file
     if len(lines) < numProvider.linesToRead {
         return nil
     }

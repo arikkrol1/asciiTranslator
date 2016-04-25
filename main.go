@@ -10,7 +10,6 @@ import(
 func main()  {
     defer failCheck()
     
-    //TODO: set paths in config
     config := readConfig()
     te := translation.NewTranslationEngine(config)
     te.Translate()
