@@ -26,21 +26,26 @@ func testBatch (lines []string, t *testing.T){
         }
 }
 
-func TestStreaming(t *testing.T) {
+func Test_LineStreamer_ReadLines_ReadFileInBatches_AllLinesAreReadInFixedSizeBatches(t *testing.T) {
     var ls = NewLineStreamer()
-    
     ls.Open("./testdata/good.txt")
     
     var lines []string
+    var count = 0
     
     for  {
         lines = ls.ReadLines(4)
-        
-        if len(lines) < 4 {
+        if len(lines) != 4 {
             break
         }
         
         testBatch(lines, t)
+        count++
+    }
+    
+    if count != 100{
+        fmt.Println(count)
+        t.FailNow()
     }
 }
 
