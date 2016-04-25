@@ -1,6 +1,10 @@
 # klarna-interview-go
 
 
+The exercise was implemented in Go (Golang) version 1.4
+
+
+
 1. Install Go runtime from https://golang.org/dl/
 
    You should have Go version 1.4+
@@ -11,7 +15,7 @@
 
    Also make sure that GOPATH/bin is in the system path so "go" command can be executed from anywhere. 
 
-3. Execute "go get github.com/arikkrol1/asciiTranslator" from the commandline
+3. Execute "go get github.com/arikkrol1/asciiTranslator" from the command line.
 
    This will add the code to GOPATH/src/github.com/arikkrol1/asciiTranslator 
 
