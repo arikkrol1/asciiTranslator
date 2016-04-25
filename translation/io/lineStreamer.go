@@ -33,11 +33,12 @@ func (ls *lineStreamer) Close(){
 
 //ReadLines returns the lines read from the file + true if there are more lines to read or false otherwise 
 func (ls *lineStreamer) ReadLines(linesNum int) ([]string, bool) {
-    lines := make([]string, linesNum)
+    //length = 0, capacity = linesNum
+    lines := make([]string, 0, linesNum)
     
 	for  i := 0; i < linesNum; i++ {
         if ls.scanner.Scan() {
-            lines[i] = ls.scanner.Text() 
+            lines =  append(lines, ls.scanner.Text())
         } else {
             return lines, false
         }
@@ -45,8 +46,6 @@ func (ls *lineStreamer) ReadLines(linesNum int) ([]string, bool) {
     
     return lines, true
 }
-
-
 
 
 
