@@ -5,6 +5,7 @@ import(
     //"fmt"
     "bufio"
     "runtime"
+    "path/filepath"
 )
 
 type invoiceNumberOutputHandler struct{
@@ -33,6 +34,11 @@ func (handler *invoiceNumberOutputHandler) Close(){
 
 func (handler *invoiceNumberOutputHandler) Open(file string){
     var err error 
+    
+    //create path if not exists
+    dirPath := filepath.Dir(file)
+    os.MkdirAll(dirPath, os.ModeDir)
+    
     handler.outFile, err = os.Create(file)
     if err != nil {
         panic("cant open file " + file)
