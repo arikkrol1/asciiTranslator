@@ -17,10 +17,10 @@ type asciiNumberProvider struct {
 }
 
 //NewAsciiNumberProvider ctor
-func NewAsciiNumberProvider(file string, config map[string]interface{}) *asciiNumberProvider{
+func NewAsciiNumberProvider(config map[string]interface{}) *asciiNumberProvider{
     var numProvider = &asciiNumberProvider{}
     numProvider.lineStreamer = NewLineStreamer()
-    numProvider.lineStreamer.Open(file)
+    numProvider.lineStreamer.Open(config["inputFile"].(string))
     
     numProvider.linesToRead = int(config["linesToRead"].(float64))
     numProvider.digitHeight = int(config["digitHeight"].(float64))

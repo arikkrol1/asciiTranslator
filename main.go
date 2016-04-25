@@ -1,7 +1,6 @@
 package main
 
 import(
-    "os"
     "fmt"
     "encoding/json"
     "io/ioutil"
@@ -11,15 +10,9 @@ import(
 func main()  {
     defer failCheck()
     
-    args := os.Args[1:]
-    if len(args) != 2{
-        fmt.Println("usage - required args: <input file path> <output file path>")
-        return
-    }
-    
     //TODO: set paths in config
     config := readConfig()
-    te := translation.NewTranslationEngine(args[0], args[1], config)
+    te := translation.NewTranslationEngine(config)
     te.Translate()
 }
 

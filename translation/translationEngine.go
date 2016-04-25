@@ -13,10 +13,10 @@ type translationEngine struct{
 }
 
 //NewTranslationEngine ctor 
-func NewTranslationEngine(inFile string, outFile string, config map[string]interface{}) *translationEngine{
+func NewTranslationEngine(config map[string]interface{}) *translationEngine{
     te := &translationEngine{}
-    te.numberProvider = io.NewAsciiNumberProvider(inFile, config)
-    te.outputHandler = io.NewInvoiceNumberOutputHandler(outFile)
+    te.numberProvider = io.NewAsciiNumberProvider(config)
+    te.outputHandler = io.NewInvoiceNumberOutputHandler(config)
     te.initTranslationDic(config)
     return te;
 }

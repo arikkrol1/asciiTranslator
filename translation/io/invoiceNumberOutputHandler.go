@@ -14,9 +14,9 @@ type invoiceNumberOutputHandler struct{
 }
 
 //NewInvoiceNumberOutputHandler ctor
-func NewInvoiceNumberOutputHandler(file string) *invoiceNumberOutputHandler{
+func NewInvoiceNumberOutputHandler(config map[string]interface{}) *invoiceNumberOutputHandler{
     handler := &invoiceNumberOutputHandler{}
-    handler.Open(file)
+    handler.Open(config["outputFile"].(string))
     
     if runtime.GOOS == "windows" {
         handler.lineFeed = "\r\n"
