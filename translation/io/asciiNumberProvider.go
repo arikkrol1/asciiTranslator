@@ -28,6 +28,7 @@ func NewAsciiNumberProvider(config map[string]interface{}) *asciiNumberProvider{
     return numProvider
 }
 
+//returns a string array representation of the number, string representation for every digit
 func (numProvider *asciiNumberProvider) GetNext() []string{
     lines := numProvider.lineStreamer.ReadLines(numProvider.linesToRead)
     
