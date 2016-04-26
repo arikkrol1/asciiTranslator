@@ -55,7 +55,6 @@ func Test_TranslationEngine_translateNumber_readingValidAsciiNumberFromFile_numb
     }
 }
 
-
 func Test_TranslationEngine_translateNumber_readingInvalidAsciiNumberFromFile_numberParsedWithIllegalSuffix(t *testing.T){
     //setup
     config = readConfig()
