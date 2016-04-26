@@ -21,6 +21,7 @@ func NewTranslationEngine(config map[string]interface{}) *translationEngine{
     return te;
 }
 
+//main logic loop
 func (te *translationEngine) Translate(){
     defer te.closeIO()
     
