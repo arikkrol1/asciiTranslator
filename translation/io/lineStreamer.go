@@ -31,7 +31,7 @@ func (ls *lineStreamer) Close(){
     ls.inFile.Close()
 }
 
-//ReadLines returns the lines read from the file + true if there are more lines to read or false otherwise 
+//ReadLines returns the lines read from the file 
 func (ls *lineStreamer) ReadLines(linesNum int) []string {
     //length = 0, capacity = linesNum
     lines := make([]string, 0, linesNum)
